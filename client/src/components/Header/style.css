@@ -1,0 +1,62 @@
+#j-container {
+    background-image: url("https://images3.alphacoders.com/151/151005.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#jumbotron {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: none;
+    width: 60%;
+    box-shadow: none !important;
+}
+
+.makeStyles-root-158 {
+    width: 70%;
+    padding: 5px 20px 10px 20px;
+    height: 50px !important;
+    /* background: rgba(0, 0, 0, 0.75); */
+    border-radius: 15px;
+    margin-bottom: 100px;
+}
+
+.MuiFormLabel-root {
+    color: rgb(0, 0, 0);
+}
+
+input#react-autosuggest-simple {
+    color: rgb(0, 0, 0) !important;
+    font-size: 25px;
+}
+label.MuiFormLabel-root.MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLabel-animated {
+    color: rgb(0, 0, 0);
+    font-size: 25px;
+}
+
+.MuiInput-underline:before {
+    border-bottom: 2px solid #9D2F17 !important;
+}
+
+.MuiInput-underline:after {
+    border-bottom: 2px solid #9D2F17 !important;
+}
+
+.makeStyles-suggestionsContainerOpen-114 {
+    box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12) !important;
+}
+
+#jumbotron img#logo {
+    max-width: 300px;
+    padding: 50px 0 30px 0;
+}
+ /* .MuiLinearProgress-colorSecondary {
+    background-color: rgb(0, 0, 0) !important;
+} */
+
+.MuiLinearProgress-barColorSecondary {
+    background-color: rgb(198, 61, 30) !important;
+} 

@@ -1,0 +1,50 @@
+import axios from "axios";
+
+// Getting the campgrounds by their ID
+function getCampgroundById(parkCode) {
+    return axios
+        .get(`https://developer.nps.gov/api/v1/campgrounds?parkCode=${parkCode}&api_key=O4VdhmolNStlPLj2bo2DfPKWks3F8J9xfihpGqTf`)
+        .then(result => result.data);
+}
+
+export default {
+    // API request from National Park Service 
+    getCampground: function (query) {
+        return axios.get(`https://developer.nps.gov/api/v1/campgrounds?q=${query}&api_key=O4VdhmolNStlPLj2bo2DfPKWks3F8J9xfihpGqTf`);
+    },
+    // API request from OpenWeather 
+    getWeather: function (lat, lon, cnt) {
+        return axios.get(`api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&cnt=${cnt}`)
+    },
+    // API request from Hiking Project
+    getTrails: function (lat, lng) {
+        return axios.get(`https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lng}&maxDistance=10&key=200542336-9cc42e1d5b620d5f44636b1bd9dc58f3`)
+        .then(result => result.data);
+    },
+
+    // Save Favorites
+    // Deletes the favorite with the given id
+    deleteFavorite: function (id) {
+        return axios.delete("/api/favorites/" + id);
+    },
+    // Saves a favorite to the database
+    saveFavorite: function (parkCode, id) {
+        return axios.post("/api/favorites", { parkCode: parkCode, id: id });
+    },
+    // Get the saved favorite from the database
+    getFavorites: function () {
+        return axios.get("/api/favorites").then(result => result.data)
+    },
+    // Get the saved favorite enriched (name, description...) from NPS data
+    getFavoriteCampgrounds: function () {
+        return this.getFavorites().then(favorites => {
+            const campgroundPromises = favorites.map(favorite => {
+                return getCampgroundById(favorite.parkCode)
+                    .then(result => result.data.find(campground => campground.id === favorite.campgroundId))
+            });
+            //Go from array of promises to a promise of array of results
+            return Promise.all(campgroundPromises)
+        })
+    }
+
+};
