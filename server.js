@@ -10,9 +10,15 @@ app.use(express.json());
 // Serve up static assets
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
+  
+  app,get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+  })
 }
 
+
 // Define API routes
+
 app.use(routes)
 
 // Starts the server to begin listening and sync sequelize models
