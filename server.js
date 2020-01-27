@@ -8,6 +8,11 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+
+// Define API routes
+
+app.use("/", routes)
+
 // Serve up static assets
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -16,10 +21,6 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
   })
 }
-
-// Define API routes
-
-app.use(routes)
 
 // Starts the server to begin listening and sync sequelize models
 // =============================================================
